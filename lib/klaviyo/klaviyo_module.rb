@@ -11,9 +11,22 @@ require_relative 'apis/profiles'
 require_relative 'apis/campaigns'
 
 module Klaviyo
-  class << self
-    attr_accessor :public_api_key
-    attr_accessor :private_api_key
+  class << self 
+    def public_api_key
+      RequestStore.store[:klaviyo_public_api_key]
+    end
+
+    def public_api_key=(value)
+      RequestStore.store[:klaviyo_public_api_key] = value
+    end
+
+    def private_api_key
+      RequestStore.store[:klaviyo_private_api_key]
+    end
+
+    def private_api_key=(value)
+      RequestStore.store[:klaviyo_private_api_key] = value
+    end
   end
 
   class KlaviyoError < StandardError; end
